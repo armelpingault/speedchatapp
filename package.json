@@ -1,0 +1,25 @@
+{
+  "name": "speedchatapp",
+  "version": "1.0.0",
+  "description": "A simple and quick tutorial to implement a chat using the MERN stack.",
+  "main": "index.js",
+  "author": "Armel Pingault<armel.pingault@gmail.com>",
+  "contributors": [],
+  "scripts": {
+    "dev": "concurrently --kill-others \"heroku local\" \"npm run start --prefix ./client\"",
+    "postinstall": "npm install --prefix ./server && npm install --prefix ./client && npm run build --prefix ./client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armelpingault/speedchatapp.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/armelpingault/speedchatapp/issues"
+  },
+  "homepage": "https://github.com/armelpingault/speedchatapp#readme",
+  "devDependencies": {
+    "concurrently": "^5.0.2"
+  }
+}
