@@ -29,7 +29,6 @@ io.on('connection', (socket) => {
 
   // Listen to connected users for a new message.
   socket.on('message', (msg) => {
-    console.log('msg', msg);
     // Create a message with the content and the name of the user.
     const message = new Message({
       content: msg.content,
@@ -39,7 +38,6 @@ io.on('connection', (socket) => {
     // Save the message to the database.
     message.save((err) => {
       if (err) return console.error(err);
-      console.log('err', err);
     });
 
     // Notify all other users about a new message.
