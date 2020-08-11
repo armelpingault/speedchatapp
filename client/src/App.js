@@ -24,8 +24,9 @@ class App extends React.Component {
 
     // Load the last 10 messages in the window.
     this.socket.on('init', (msg) => {
+      let msgReversed = msg.reverse();
       this.setState((state) => ({
-        chat: [...state.chat, ...msg.reverse()],
+        chat: [...state.chat, ...msgReversed],
       }), this.scrollToBottom);
     });
 
@@ -51,22 +52,17 @@ class App extends React.Component {
     });
   }
 
-  // When the user is posting a new message.
   handleSubmit(event) {
-    console.log(event);
-
     // Prevent the form to reload the current page.
     event.preventDefault();
 
-    this.setState((state) => {
-      console.log(state);
-      console.log('this', this.socket);
-      // Send the new message to the server.
-      this.socket.emit('message', {
-        name: state.name,
-        content: state.content,
-      });
+    // Send the new message to the server.
+    this.socket.emit('message', {
+      name: this.state.name,
+      content: this.state.content,
+    });
 
+    this.setState((state) => {
       // Update the chat with the user's message and remove the current message.
       return {
         chat: [...state.chat, {
